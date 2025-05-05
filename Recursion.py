@@ -51,5 +51,5 @@ def TowerOfHanoi(n, source, destination_rod, auxilliary_rod):
     print("Move disk", n ,"from source", source, "to destination", destination_rod)
     TowerOfHanoi(n - 1, auxilliary_rod, destination_rod, source)
 
-n=5
+n=4
 TowerOfHanoi(n,'A', 'B', 'C')
