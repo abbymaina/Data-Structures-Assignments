@@ -1,24 +1,42 @@
+class Solution:
+    def __init__(self):
+        self.stack = []
+
+    def push_character(self, ch):
+        self.stack.append(ch)
+
+    def pop_character(self):
+        return self.stack.pop()
+
+
 def check_palindrome(s):
-    stack = []
-    queue = []
+    cleaned = ''.join(char.lower() for char in s if char.isalpha())
 
-    for char in s:
-        stack.append(char)
-        queue.append(char)
+    obj = Solution()
 
-    is_palindrome = True
-    while stack and queue:
-        stack_char = stack.pop()
-        queue_char = queue.pop(0)
-        if stack_char != queue_char:
-            is_palindrome = False
-            break
+    for char in cleaned:
+        obj.push_character(char)
 
-    if is_palindrome:
-        print(f"The word, {s}, is a palindrome.")
+    for char in cleaned:
+        if char != obj.pop_character():
+            return False
+
+    return True
+
+
+def main():
+    s = input("Enter a word or sentence to check if it is a palindrome: ").strip()
+
+    if not any(c.isalpha() for c in s):
+        print("Please enter a valid string containing letters.")
+        return
+
+    result = check_palindrome(s)
+    if result:
+        print(f"The input, '{s}', is a palindrome.")
     else:
-        print(f"The word, {s}, is not a palindrome.")
+        print(f"The input, '{s}', is not a palindrome.")
 
 
-s = input().strip()
-check_palindrome(s)
+if __name__ == "__main__":
+    main()
